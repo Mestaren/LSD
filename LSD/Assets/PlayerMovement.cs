@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundMask;
 
     Vector3 velocity;
-    bool isGrounded;
+   public bool isGrounded = false;
 
     // Start is called before the first frame update
     void Start()
@@ -42,9 +43,19 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(move * speed * Time.deltaTime);
 
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && (isGrounded=true))
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+
+            Console.WriteLine("jump");
+        }
+
+
+       // if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            //velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+
+           // Console.WriteLine("jump");
         }
 
         velocity.y += gravity * Time.deltaTime;
